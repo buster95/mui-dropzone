@@ -1,14 +1,13 @@
+import React from 'react';
+import Dropzone from 'react-dropzone';
+import clsx from 'clsx';
+import PropTypes from 'prop-types';
 import Snackbar from '@mui/material/Snackbar';
 import Typography from '@mui/material/Typography';
-import Button from '@material-ui/core/Button';
+import Button from '@mui/material/Button';
 import {withStyles} from '@mui/styles';
 import AttachFileIcon from '@mui/icons-material/AttachFile';
 import CloudUploadIcon from '@mui/icons-material/CloudUpload';
-import clsx from 'clsx';
-import PropTypes from 'prop-types';
-import * as React from 'react';
-import {Fragment} from 'react';
-import Dropzone from 'react-dropzone';
 import {convertBytesToMbsOrKbs, isImage, readFile} from '../helpers';
 import PreviewList from './PreviewList';
 import SnackbarContentWrapper from './SnackbarContentWrapper';
@@ -234,111 +233,110 @@ class DropzoneAreaBase extends React.PureComponent {
         const previewsVisible = showPreviews && fileObjects.length > 0;
         const previewsInDropzoneVisible = showPreviewsInDropzone && fileObjects.length > 0;
 
-        return (
-            <Fragment>
-                <Dropzone
-                    {...dropzoneProps}
-                    accept={acceptFiles}
-                    onDropAccepted={this.handleDropAccepted}
-                    onDropRejected={this.handleDropRejected}
-                    maxSize={maxFileSize}
-                    multiple={isMultiple}
-                >
-                    {({getRootProps, getInputProps, isDragActive, isDragReject}) => (
-                        <div
-                            {...getRootProps({
-                                className: clsx(
-                                    classes.root,
-                                    dropzoneClass,
-                                    isDragActive && classes.active,
-                                    (!disableRejectionFeedback && isDragReject) && classes.invalid,
-                                ),
-                            })}
-                        >
-                            <input {...getInputProps(inputProps)} />
-
-                            <div className={classes.textContainer}>
-                                <Typography
-                                    variant="h5"
-                                    component="p"
-                                    className={clsx(classes.text, dropzoneParagraphClass)}
-                                >
-                                    {dropzoneText}
-                                </Typography>
-                                {Icon ? (
-                                    <Icon className={classes.icon} />
-                                ) : (
-                                    <CloudUploadIcon className={classes.icon} />
-                                )}
-                            </div>
-
-                            {previewsInDropzoneVisible &&
-                                <PreviewList
-                                    fileObjects={fileObjects}
-                                    handleRemove={this.handleRemove}
-                                    getPreviewIcon={getPreviewIcon}
-                                    showFileNames={showFileNames}
-                                    useChipsForPreview={useChipsForPreview}
-                                    previewChipProps={previewChipProps}
-                                    previewGridClasses={previewGridClasses}
-                                    previewGridProps={previewGridProps}
-                                />
-                            }
-                        </div>
-                    )}
-                </Dropzone>
-
-                {
-                    reset && (
-                        React.isValidElement(reset) ?
-                            reset :
-                            <Button
-                                onClick={reset.onClick}
-                                variant="outlined"
-                                className={classes.resetButton}
-                            >
-                                {reset.text || 'reset'}
-                            </Button>
-                    )
-                }
-
-                {previewsVisible &&
-                    <Fragment>
-                        <Typography variant="subtitle1" component="span">
-                            {previewText}
-                        </Typography>
-
-                        <PreviewList
-                            fileObjects={fileObjects}
-                            handleRemove={this.handleRemove}
-                            getPreviewIcon={getPreviewIcon}
-                            showFileNames={showFileNamesInPreview}
-                            useChipsForPreview={useChipsForPreview}
-                            previewChipProps={previewChipProps}
-                            previewGridClasses={previewGridClasses}
-                            previewGridProps={previewGridProps}
-                        />
-                    </Fragment>
-                }
-
-                {((typeof showAlerts === 'boolean' && showAlerts) ||
-                    (Array.isArray(showAlerts) && showAlerts.includes(snackbarVariant))) &&
-                    <Snackbar
-                        anchorOrigin={defaultSnackbarAnchorOrigin}
-                        autoHideDuration={6000}
-                        {...alertSnackbarProps}
-                        open={openSnackBar}
-                        onClose={this.handleCloseSnackbar}
+        return <>
+            <Dropzone
+                {...dropzoneProps}
+                accept={acceptFiles}
+                onDropAccepted={this.handleDropAccepted}
+                onDropRejected={this.handleDropRejected}
+                maxSize={maxFileSize}
+                multiple={isMultiple}
+            >
+                {({getRootProps, getInputProps, isDragActive, isDragReject}) => (
+                    <div
+                        {...getRootProps({
+                            className: clsx(
+                                classes.root,
+                                dropzoneClass,
+                                isDragActive && classes.active,
+                                (!disableRejectionFeedback && isDragReject) && classes.invalid,
+                            ),
+                        })}
                     >
-                        <SnackbarContentWrapper
-                            onClose={this.handleCloseSnackbar}
-                            variant={snackbarVariant}
-                            message={snackbarMessage}
-                        />
-                    </Snackbar>
-                }
-            </Fragment>
-        );
+                        <input {...getInputProps(inputProps)} />
+
+                        <div className={classes.textContainer}>
+                            <Typography
+                                variant="h5"
+                                component="p"
+                                className={clsx(classes.text, dropzoneParagraphClass)}
+                            >
+                                {dropzoneText}
+                            </Typography>
+
+                            {Icon ? (
+                                <Icon className={classes.icon} />
+                            ) : (
+                                <CloudUploadIcon className={classes.icon} accentHeight={100} />
+                            )}
+                        </div>
+
+                        {previewsInDropzoneVisible &&
+                            <PreviewList
+                                fileObjects={fileObjects}
+                                handleRemove={this.handleRemove}
+                                getPreviewIcon={getPreviewIcon}
+                                showFileNames={showFileNames}
+                                useChipsForPreview={useChipsForPreview}
+                                previewChipProps={previewChipProps}
+                                previewGridClasses={previewGridClasses}
+                                previewGridProps={previewGridProps}
+                            />
+                        }
+                    </div>
+                )}
+            </Dropzone>
+
+            {
+                reset && (
+                    React.isValidElement(reset) ?
+                        reset :
+                        <Button
+                            onClick={reset.onClick}
+                            variant="outlined"
+                            className={classes.resetButton}
+                        >
+                            {reset.text || 'reset'}
+                        </Button>
+                )
+            }
+
+            {previewsVisible &&
+                <>
+                    <Typography variant="subtitle1" component="span">
+                        {previewText}
+                    </Typography>
+
+                    <PreviewList
+                        fileObjects={fileObjects}
+                        handleRemove={this.handleRemove}
+                        getPreviewIcon={getPreviewIcon}
+                        showFileNames={showFileNamesInPreview}
+                        useChipsForPreview={useChipsForPreview}
+                        previewChipProps={previewChipProps}
+                        previewGridClasses={previewGridClasses}
+                        previewGridProps={previewGridProps}
+                    />
+                </>
+            }
+
+            {((typeof showAlerts === 'boolean' && showAlerts) ||
+                (Array.isArray(showAlerts) && showAlerts.includes(snackbarVariant))) &&
+                <Snackbar
+                    anchorOrigin={defaultSnackbarAnchorOrigin}
+                    autoHideDuration={6000}
+                    {...alertSnackbarProps}
+                    open={openSnackBar}
+                    onClose={this.handleCloseSnackbar}
+                >
+                    <SnackbarContentWrapper
+                        onClose={this.handleCloseSnackbar}
+                        variant={snackbarVariant}
+                        message={snackbarMessage}
+                    />
+                </Snackbar>
+            }
+        </>;
     }
 }
 

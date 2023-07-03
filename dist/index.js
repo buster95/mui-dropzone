@@ -18,7 +18,7 @@ var PropTypes = _interopDefault(require('prop-types'));
 var React = require('react');
 var Snackbar = _interopDefault(require('@mui/material/Snackbar'));
 var Typography = _interopDefault(require('@mui/material/Typography'));
-var Button = _interopDefault(require('@material-ui/core/Button'));
+var Button = _interopDefault(require('@mui/material/Button'));
 var styles$3 = require('@mui/styles');
 var AttachFileIcon = _interopDefault(require('@mui/icons-material/AttachFile'));
 var CloudUploadIcon = _interopDefault(require('@mui/icons-material/CloudUpload'));
@@ -35,7 +35,6 @@ var CloseIcon = _interopDefault(require('@mui/icons-material/Close'));
 var ErrorIcon = _interopDefault(require('@mui/icons-material/Error'));
 var InfoIcon = _interopDefault(require('@mui/icons-material/Info'));
 var WarningIcon = _interopDefault(require('@mui/icons-material/Warning'));
-var Button$1 = _interopDefault(require('@mui/material/Button'));
 var Dialog = _interopDefault(require('@mui/material/Dialog'));
 var DialogActions = _interopDefault(require('@mui/material/DialogActions'));
 var DialogContent = _interopDefault(require('@mui/material/DialogContent'));
@@ -1286,10 +1285,10 @@ var DropzoneDialogBase = /*#__PURE__*/function (_React$PureComponent) {
         maxWidth: maxWidth,
         onClose: onClose,
         open: open
-      }), /*#__PURE__*/React.createElement(DialogTitle, null, dialogTitle), /*#__PURE__*/React.createElement(DialogContent, null, /*#__PURE__*/React.createElement(DropzoneAreaBase$1, dropzoneAreaProps)), /*#__PURE__*/React.createElement(DialogActions, null, /*#__PURE__*/React.createElement(Button$1, {
+      }), /*#__PURE__*/React.createElement(DialogTitle, null, dialogTitle), /*#__PURE__*/React.createElement(DialogContent, null, /*#__PURE__*/React.createElement(DropzoneAreaBase$1, dropzoneAreaProps)), /*#__PURE__*/React.createElement(DialogActions, null, /*#__PURE__*/React.createElement(Button, {
         color: "primary",
         onClick: onClose
-      }, cancelButtonText), /*#__PURE__*/React.createElement(Button$1, {
+      }, cancelButtonText), /*#__PURE__*/React.createElement(Button, {
         color: "primary",
         disabled: submitDisabled,
         onClick: onSave
